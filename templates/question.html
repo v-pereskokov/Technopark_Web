@@ -1,0 +1,71 @@
+{% extends "base.html"%}
+{% load static %}
+{% block title%} Question {% endblock %}
+{% block content %}
+  <div class="content">
+    <div class="question-page border">
+      <div class="question-page-avatar">
+        <a href="/user/{{ question.user.username }}">
+          <img src="/{{ question.user.profile.avatar.url }}" class="img-circle question-page-avatar-img">
+        </a>
+      </div>
+      <div class="question-page-like">
+        <a href="#action">
+          <img src="{% static 'imgs/like.png'%}" class="img-circle question-page-like-img">
+        </a>
+        <p class="question-page-like-count">{{ question.rating }}</p>
+      </div>
+      <div class="question-page-title">
+        <a href="/question/id{{ question.id }}">{{ question.title }}</a>
+      </div>
+      <div class="question-page-description">
+        <p>
+          {{ question.text }}
+        </p>
+      </div>
+      <div class="question-page-tags-title">
+        <span>Tags: </span>
+        <div class="question-page-tags">
+          {% for tag in question.tags.all %}
+            <a href="/tag/{{ tag }}">{{ tag }}</a>
+           {% endfor %}
+        </div>
+      </div>
+      <hr class="question-page-hr free-class">
+      {% for answer in answers %}
+      <div class="question-page-answers border">
+        <div class="answer">
+          <div class="question-page-answer-avatar">
+            <a href="/user/{{ answer.user.username }}">
+              <img src="/{{ answer.user.profile.avatar.url }}" class="img-circle question-page-answer-avatar-img">
+            </a>
+          </div>
+          <div class="question-page-answer-like">
+            <a href="#action">
+              <img src="{% static 'imgs/like.png' %}" class="img-circle question-page-answer-like-img">
+            </a>
+            <p class="question-page-answer-like-count">{{ answer.user.profile.rating }}</p>
+          </div>
+          <div class="question-page-answer-description">
+            <p>
+              {{ answer.text }}
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="question-page-input-form">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for f in form.visible_fields %}
+        <div class="login-form-group">
+          {{ f }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-default login-btn">Send</button>
+      </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

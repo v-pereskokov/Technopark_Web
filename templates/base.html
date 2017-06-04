@@ -1,0 +1,83 @@
+{% load static %}
+<DOCTYPE! html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="utf-8"> 
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+	<link href="{% static 'bootstrap-3.3.5-dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="header border">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="header-logo">
+					<a href="{% url 'index'%}">
+						<img src="{% static 'imgs/check.png' %}" class="header-logo-img">
+						<h1 class="header-logo-text">TopQuestion</h1>
+					</a>
+				</div>
+				<div class="header-menu">
+					<div class="header-menu-nav">
+						<nav>
+							<ul class="header-menu-nav-ul"> 
+								<li class="header-menu-nav-ul-li"><a href="{% url 'hot_questions' %}" class="header-menu-nav-ul-li-a">questions</a></li>
+								<li class="header-menu-nav-ul-li"><a href="{% url 'ask page'%}" class="header-menu-nav-ul-li-a">ask!</a></li>
+							</ul>
+							<div class="header-menu-nav-search">
+								<form class="form-search">
+									<input type="text" class="input-medium search-query" placeholder="Search">
+									<button type="submit" class="btn">ASK</button>
+								</form>
+							</div>
+					            <div class="header-menu-nav-register-btns">
+					            {% if request.user.is_authenticated %}
+						              <img src="/{{ request.user.profile.avatar.url }}" class="img-circle header-user-avatar">
+						              <div class="header-user-info">
+										  <p class="header-user-info-p"><a href="{% url 'user' request.user %}" class="header-user-info-p-a">settings</a></p>
+										  <p class="header-user-info-p"><a href="{% url 'mylogout' %}?continue={{ request.path }}" class="header-user-info-p-a">logout</a></p>
+									   </div>
+					            {% else %}
+					            	<div class="header-menu-nav-register-btn-login">
+					            		<a href="{% url 'mylogin' %}?continue={{ request.path }}">LogIn</a>
+					            		<a href="{% url 'signup' %}">SignUp</a>
+					            	</div>
+					            {% endif %} 
+					            </div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		<div class="right-tags border">
+			<p>Tags:</p>
+			<ul>
+				{% for tag in tags %}
+					<li><a href="{% url 'questions tag' tag %}">{{ tag }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="right-technopark border">
+			<a href="https://park.mail.ru/blog/topic/4815/">
+				<img src="{% static 'imgs/tp.png' %}" class="right-technopark-img">
+			</a>
+		</div>
+		<div class="right-soc-network">
+			<div class="right-soc-network-vk">
+				<a href="https://vk.com/feed">
+					<img src="{% static 'imgs/vk.png' %}" class="right-soc-network-vk-img">
+				</a>
+			</div>
+			<div class="right-soc-network-github">
+				<a href="https://github.com/vladpereskokov">
+					<img src="{% static 'imgs/github.png' %}" class="right-soc-network-github-img">
+				</a>
+			</div>
+		</div>
+	</div>
+	{% block content %}{% endblock %}
+</body>
+</html>

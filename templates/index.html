@@ -1,0 +1,51 @@
+{% extends "base.html"%}
+{% load static %}
+{% block title%} Main page {% endblock %}
+{% block content %}
+	<div class="content">
+		<div class="questions">
+			<div class="questions-title">
+				<p>{{ questions_page_title }}</p>
+			</div>
+			{% for question_ in questions %}
+		        <a href="{% url 'question' question_.id %}">
+		        <div class="questions-question border">
+		          <div class="questions-question-avatar">
+		            <a href="{% url 'user' %}">
+		              <img src="{% static 'imgs/avatar_user.png' %}" class="img-circle questions-question-avatar-img">
+		            </a>
+		          </div>
+		          <div class="questions-question-like">
+		            <a href="#action">
+		              <img src="{% static 'imgs/like.png' %}" class="img-circle questions-question-like-img">
+		            </a>
+		            <p class="questions-question-like-count">5</p>
+		          </div>
+		          <div class="questions-question-title">
+		            <a href="{% url 'question' question_.id %}">{{ question_.head }}</a>
+		          </div>
+		          <div class="questions-question-description">
+		            <p>
+		              {{ question_.text }}
+		            </p>
+		          </div>
+		          <div class="questions-question-answers">
+		            <a href="{% url 'question' question_.id %}">
+		              <span>Answers(</span><span id="answers">3</span><span>)</span>
+		            </a>
+		          </div>
+		          <div class="questions-question-tags-title">
+		            <span>Tags: </span>
+		            <div class="questions-question-tags">
+		              {% for tag in question_.tags %}
+						        <a href="{% url 'questions tag' question_.id %}">{{ tag }}</a>
+					        {% endfor %}
+		            </div>
+		          </div>
+		        </div>
+		      </a>
+			{% endfor %}
+      {% include "paginator.html"%}
+		</div>
+	</div>
+{% endblock %}

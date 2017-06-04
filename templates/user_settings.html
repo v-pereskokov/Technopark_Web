@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+
+{% block content %}
+	<div class="content">
+		<div class="user border">
+			<div class="question-page-avatar">
+				<a href="#">
+					<img src="/{{ profile.user.profile.avatar.url }}" class="img-circle question-page-avatar-img">
+					<p style="margin-left: 20px; color: white;">{{ profile.user.username }}</p>
+          <p style="margin-left: 13px; margin-top: -20px; color: white;">Rating:{{ profile.rating }}</p>
+				</a>
+			</div>
+			<div class="settings-user">
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					{% for f in form.visible_fields %}
+					<div class="login-form-group">
+						<label for="{{ f.name }}">{{ f.label }}</label>
+						{{ f }}
+					</div>
+					{% endfor %}
+					<button type="submit" class="btn btn-default login-btn">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

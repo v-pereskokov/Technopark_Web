@@ -1,2 +1,2 @@
 # Technopark_Web
-Course of web
+Stable version

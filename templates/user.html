@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+
+{% block content %}
+	<div class="content">
+		<div class="user border">
+			<div class="question-page-avatar">
+				<a href="#">
+					<img src="/{{ profile.user.profile.avatar.url }}" class="img-circle question-page-avatar-img">
+					<p style="margin-left: 20px; color: white;">{{ profile.user.username }}</p>
+          <p style="margin-left: 13px; margin-top: -20px; color: white;">Rating:{{ profile.rating }}</p>
+				</a>
+			</div>
+			<div class="settings-user">
+				<form>
+					<div class="login-form-group">
+						<label for="exampleInputEmail1">Name</label>
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="{{ profile.user.username }}" disabled>
+					</div>
+					<div class="login-form-group">
+						<label for="exampleInputEmail1">Email address</label>
+						<input type="email" class="form-control" id="exampleInputEmail1" placeholder="{{ profile.user.email }}" disabled>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

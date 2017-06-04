@@ -1,0 +1,25 @@
+{% extends "base.html"%}
+
+{% block title%} Ask {% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="new-question border">
+		<div class="new-question-title">
+			<p>New question:</p>
+		</div>
+		<div class="form-new-question">
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				{% for f in form.visible_fields %}
+				<div class="login-form-group">
+					<label for="{{ f.name }}">{{ f.label }}</label>
+					{{ f }}
+				</div>
+				{% endfor %}
+				<button type="submit" class="btn btn-default login-btn">Send</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

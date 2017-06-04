@@ -1,0 +1,546 @@
+body {
+	margin: 0 0;
+	background: #8a9597;
+	font-family: 'Indie Flower', cursive;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+/* header сайта*/
+.header {
+	background: #303030;
+	width: 1300px;
+	height: 70px;
+}
+
+.header:before {
+	content: '';
+	display: inline-block;
+	height: 35%;
+	vertical-align: middle;
+}
+
+.header-logo {
+	display: inline-block;
+	vertical-align: middle;
+	color: #fff;
+	font: 'Montez';
+}
+
+.header-logo-img {
+	width: 30px;
+	height: 30px;
+	margin-top: -5px;
+	margin-left: 195px;
+}
+
+.header-logo-text {
+	margin-top: -36px;
+	margin-left: 232px;
+	color: #fff;
+}
+
+.header-logo-text:visited {
+	text-decoration: none;
+}
+
+.header-menu-nav {
+	display: block;
+	position: relative;
+	margin-top: -55px;
+	margin-left: 450px;
+}
+
+.header-menu-nav-ul {
+	width: 600px;
+	margin: 10 10;
+	padding-left: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.header-menu-nav-ul-li {
+	float: left;
+	width: 120px;
+}
+
+.header-menu-nav-ul-li-a {
+	text-align: center;
+	display: block;
+	color: #fff;
+	font-size: 2em;
+	font-weight: bold;
+	transition: 0.5s ease-in-out;
+}
+
+.header-menu-nav-ul-li-a:hover {
+	color: #f70211;
+}
+
+.header-menu-nav-ul-li-a:visited {
+	text-decoration: none;
+}
+
+.header-menu-nav-search {
+	max-width: 190px;
+	margin-top: -50px;
+	margin-left: 260px;
+}
+
+.login-user {
+	margin-top: -10px;
+}
+
+.top {
+}
+
+.header-user-avatar {
+	width: 60px;
+	height: 60px;
+	margin-left: 100px;
+}
+
+.header-user-info {
+	width: 100px;
+	margin-top: -60px;
+	margin-left: 50px;
+}
+
+.header-user-info-p {
+	width: 60px;
+	font: 7pt 'Indie Flower';
+}
+
+.header-user-info-p-a {
+	display: block;
+	color: #fff;
+	font-size: 2em;
+	font-weight: bold;
+	transition: 0.5s ease-in-out;
+}
+
+.header-user-info-p-a:hover {
+	color: #f70211;
+}
+
+.header-user-info-p-a:visited {
+	text-decoration: none;
+}
+
+.header-menu-nav-register-btns {
+	margin-top: -60px;
+	margin-left: 430px;
+	font-size: 20pt;
+}
+
+.header-menu-nav-register-btn-login {
+	
+}
+
+.header-menu-nav-register-btn-signup {
+	padding-left: 80px;
+	margin-top: -48px;
+	color: blue;
+}
+
+/* Контентнтая часть */
+
+/* Список вопросов (главная) */
+.questions, .new-question {
+	width: 700px;
+	height: 700px;
+	margin-top: -540px;
+	margin-left: 100px;
+}
+
+.questions-title, .new-question-title, .question-page {
+	text-align: center;
+	font: 28pt 'Cormorant Garamond';
+}
+
+.questions-question {
+	width: 95%;
+	height: 22%;
+	background: #fff;
+	margin-top: 10px;
+	margin-left: 2.5%;
+}
+
+.questions-question:hover {
+	background: #ffffcc;
+}
+
+.questions-question-avatar {
+	width: 12%;
+	height: 50%;
+	margin: 2% 4%;
+}
+
+.questions-question-avatar-img {
+	width: 100%;
+	height: 100%;
+}
+
+.questions-question-like {
+	width: 5%;
+	height: 20%;
+	margin-left: 4.5%;
+}
+
+.questions-question-like-img {
+	width: 100%;
+	height: 100%;
+}
+
+.questions-question-like-count {
+	font: 16pt 'Cormorant Garamond';
+	margin-top: -30px;
+	padding-left: 40px;
+}
+
+.questions-question-title {
+	font: 16pt 'Cormorant Garamond';
+	text-decoration: underline;
+	margin-top: -120px;
+	padding-left: 120px;
+}
+
+.questions-question-description {
+	width: 500px;
+	font: 12pt 'Cormorant Garamond';
+	margin-top: 8px;
+	margin-left: 130px;
+}
+
+.questions-question-answers {
+	font: 12pt 'Cormorant Garamond';
+	margin-top: 5px;
+	margin-left: 130px;
+}
+
+.questions-question-tags-title {
+	font: 12pt 'Cormorant Garamond';
+	margin-top: -18px;
+	margin-left: 235px;
+}
+
+.questions-question-tags {
+	margin-top: -16.6px;
+	margin-left: 48px;
+}
+
+.question-pagination {
+	margin-left: 34%;
+}
+
+.question-pagination ul {
+	font: 15pt 'Cormorant Garamond';
+}
+/* Страница нового вопроса */
+.new-question {
+	height: 520px;
+	background: #303030;
+	color: white;
+}
+
+
+
+.form-new-question {
+	font: 18pt 'Cormorant Garamond';
+	width: 60%;
+	margin-top: 7%;
+	margin-left: 18%;
+}
+
+.form-new-question-edit-text {
+	width: 330px;
+	height: 30px;
+	color: black;
+	margin-top: 5%;
+	margin-left: 15px;
+}
+
+.form-new-question-textarea {
+	width: 330px;
+	height: 300px;
+	font: 18pt 'Cormorant Garamond';
+	color: black;
+	margin-top: -18px;
+	margin-left: 65px;
+}
+
+.form-new-question-btn {
+	margin-top: 25px;
+	margin-left: 190px;
+	color: black;
+}
+/* Страница одного вопроса  */
+.question-page {
+	width: 700px;
+	max-height: 4000px;
+	background: white;
+	margin-top: -540px;
+	margin-left: 100px;
+}
+
+.question-page-avatar {
+	width: 120px;
+	height: 120px;
+	margin: 2% 4%;
+}
+
+.question-page-avatar-img {
+	width: 100%;
+	height: 100%;
+}
+
+.question-page-like {
+	width: 40px;
+	height: 40px;
+	margin-left: 7.5%;
+}
+
+.question-page-like-img {
+	width: 100%;
+	height: 100%;
+}
+
+.question-page-like-count {
+	font: 16pt 'Cormorant Garamond';
+	margin-top: -35px;
+	padding-left: 50px;
+}
+
+.question-page-title {
+	font: 20pt 'Cormorant Garamond';
+	text-decoration: underline;
+	margin-top: -170px;
+	padding-left: 90px;
+}
+
+.question-page-description {
+	width: 500px;
+	font: 16pt 'Cormorant Garamond';
+	margin-top: 16px;
+	margin-left: 170px;
+	text-align: left;
+}
+
+.question-page-tags-title {
+	font: 18pt 'Cormorant Garamond';
+	margin-top: 10px;
+	margin-left: -310px;
+}
+
+.question-page-tags {
+	margin-top: -18.8px;
+	margin-left: 310px;
+}
+
+.question-page-answers {
+	width: 85%;
+	height: 170px;
+	margin-top: 2%;
+	margin-left: 7.5%;
+}
+
+.question-page-answers:hover {
+	background: #ffffcc;
+}
+
+.question-page-answer-avatar {
+	width: 90px;
+	height: 90px;
+	margin: 5 5;
+}
+
+.question-page-answer-avatar-img {
+	width: 100%;
+	height: 100%;
+}
+
+.question-page-answer-like {
+	width: 35px;
+	height: 35px;
+	margin: 7 15;
+}
+
+.question-page-answer-like-img {
+	width: 100%;
+	height: 100%;
+}
+
+.question-page-answer-like-count {
+	font: 15pt 'Cormorant Garamond';
+	margin-top: -25px;
+	margin-left: 45px;
+}
+
+.question-page-answer-description {
+	width: 440px;
+	font: 12pt 'Cormorant Garamond';
+	text-align: left;
+	margin-top: -120px;
+	margin-left: 120px;
+}
+
+.question-page-answer-ok {
+	width: 25px;
+	height: 25px;
+	margin-top: 33px;
+	margin-left: 120px;
+}
+
+.question-page-answer-ok-img {
+	width: 100%;
+	height: 100%;
+}
+
+.question-page-input-form {
+	margin-top: 20px;
+	margin-left: -222px;
+}
+
+.question-page-input-form-text {
+	width: 595px;
+	height: 300px;
+	font: 14pt 'Cormorant Garamond';
+	margin-left: 0px;
+	color: black;
+}
+
+.question-page-answer-ok-correct {
+	font: 16pt 'Indie Flower';
+	margin-left: -15px;
+}
+
+.question-page-answer-done {
+	font: 16pt 'Indie Flower';
+	margin-top: 10px;
+}
+
+.question-pagination {
+  	margin-top: 170px;
+}
+
+.login {
+	width: 800px;
+	height: 500px;
+	background: #303030;
+	margin-top: -530px;
+	margin-left: 40px;
+}
+
+.login-form-group {
+	width: 600px;
+	margin-left: 270px;
+	font: 16pt 'Indie Flower';
+	color: black;
+}
+
+.free-class {
+	margin-top: 15px;
+}
+
+.login-btn {
+	margin-top: 2%;
+	margin-left: 230px;
+	font: 16pt 'Indie Flower';
+}
+
+.login-title {
+	color: white;
+	font: 30pt 'Indie Flower';
+	margin-left: 360px;
+}
+
+.login-form-group-file {
+	font: 11pt 'Indie Flower';
+}
+
+.user {
+	width: 700px;
+	height: 500px;
+	background: #303030;
+	font: 30pt 'Indie Flower';
+	margin-top: -540px;
+	margin-left: 100px;
+}
+
+.settings-user {
+	margin-top: -120px;
+	margin-left: 200px;
+}
+
+/* Правые блоки */
+.right-tags {
+	width: 200px;
+	height: 200px;
+	background: #fff;
+	font: 20pt 'Indie Flower';
+	margin-top: 20px;
+	margin-left: 890px;
+}
+
+.right-technopark {
+	width: 200px;
+	height: 150px;
+	background: #fff;
+	margin-top: 20px;
+	margin-left: 890px;
+}
+
+.right-technopark-img, .right-soc-network-vk-img, .right-soc-network-github-img {
+	width: 100%;
+	height: 100%;
+}
+
+.right-soc-network {
+	width: 200px;
+	height: 150px;
+	margin-top: 20px;
+	margin-left: 875px;
+}
+
+.right-soc-network-vk {
+	width: 60px;
+	height: 60px;
+	margin: 16 20;
+}
+
+.right-soc-network-github {
+	width: 120px;
+	height: 40px;
+	margin-top: -70px;
+	margin-left: 90px;
+}
+
+.right-tags-title {
+	padding-left: 10px;
+}
+
+.border {
+	border: 1px solid black;
+}
+
+.button-change {
+	font-size: 14pt;
+	color: white;
+	margin-left: 600px;
+}
+
+.form-error-text {
+	font: 40pt 'Indie Flower';
+	color: #000;
+}
+
