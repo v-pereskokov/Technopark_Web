@@ -27,8 +27,38 @@
 							</ul>
 							<div class="header-menu-nav-search">
 								<form class="form-search">
-									<input type="text" class="input-medium search-query" placeholder="Search">
-									<button type="submit" class="btn">ASK</button>
+									<input type="text" class="input-medium search-query" id = "search-text" placeholder="Search">
+									<button type="submit" class="btn" id="search-btn">ASK</button>
+									{% if results|length %}
+
+										<table>
+										<tr class='even'>
+										<td colspan="3" class="right">
+										<strong>Found {{ results|length }} users</strong>
+										</td>
+										</tr>
+										 
+										{% for title in results %}
+										<tr class="{% cycle 'odd' 'even' %}">
+										<td><strong>{{ forloop.counter }}.</strong></td>
+										<td>
+										{{ title }}<br/>
+										<span class="hint">{{ title }}</span>
+										</td>
+										<td class="right">
+										<span class="hint">
+										Joined {{ user.date_joined|timesince }} ago<br/>
+										Last logged in {{ user.last_login|timesince }} ago
+										</span>
+										</td>
+										</tr>
+										{% endfor %}
+										    </table>
+										{% else %}
+										    <div class="note">
+										Your search yielded no results
+										</div>
+										{% endif %}
 								</form>
 							</div>
 					            <div class="header-menu-nav-register-btns">
@@ -55,7 +85,7 @@
 		<div class="right-tags border">
 			<p>Tags:</p>
 			<ul>
-				{% for tag in tags %}
+				{% for tag in popular_tags %}
 					<li><a href="{% url 'questions tag' tag %}">{{ tag }}</a></li>
 				{% endfor %}
 			</ul>
@@ -79,5 +109,14 @@
 		</div>
 	</div>
 	{% block content %}{% endblock %}
+
+	<!-- jQuery library -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="{% static 'bootstrap-3.3.5-dist/js/bootstrap.min.js' %}"></script>
+<!-- My JavaScript -->
+<script src="{% static 'js/like.js' %}"></script>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.core.urlresolvers import reverse
 from django.forms.models import model_to_dict
+from django.template.context import RequestContext
 from django.contrib.auth.models import User
 import json
 from ask.models import *
@@ -137,12 +138,68 @@ def user_settings(request, user_name):
 
 @login_required_ajax
 @require_POST
+def answer_check(request):
+	ansid = int(request.POST.get('ansid'))
+	qid = int(request.POST.get('qid'))
+	question = get_object_or_404(Question, pk=qid)
+	if request.user == question.user:
+		answer = get_object_or_404(Answer, pk=ansid)
+		answer.is_correct = not answer.is_correct
+		answer.save()
+		response = {'ansid' : str(ansid), 'qid' : str(qid), 'iscorrect' : answer.is_correct}
+
+		return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+@login_required_ajax
+@require_POST
 def question_like(request):
-	pass
+	if request.method == 'POST':
+		user = request.user
+		id = int(request.POST.get('id'))
+		is_like = int(request.POST.get('like'))
+		question = get_object_or_404(Question, pk=id)
+		if is_like == 1:
+			qLike = QuestionLike.objects.like(question.id, user)
+		likebuttonid = '#l' + str(question.id)
+		likebuttonstyle = 'btn likebutton'
+
+		if qLike.is_liked:
+			likebuttonstyle = likebuttonstyle + ' btn-liked'
+
+		response = {'likebuttonid': likebuttonid, 'likebuttonstyle': likebuttonstyle}
+
+	return HttpResponse(json.dumps(response), content_type='application/json')
 
 
 @login_required_ajax
 @require_POST
 def answer_like(request):
-	pass
+	if request.method == 'POST':
+		user = request.user
+		id = int(request.POST.get('id'))
+		is_like = int(request.POST.get('like'))
+		answer = get_object_or_404(Answer, pk=id)
+		if is_like == 1:
+			aLike = AnswerLike.objects.like(answer.id, user)
+		likebuttonid = '#al' + str(answer.id)
+		likebuttonstyle = 'btn alikebutton'
 
+		if aLike.is_liked:
+			likebuttonstyle = likebuttonstyle + ' btn-liked'
+
+		response = {'likebuttonid': likebuttonid, 'likebuttonstyle': likebuttonstyle}
+
+		return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def ajax_user_search(request):
+    if request.is_ajax():
+        text = request.GET.get('search-text')
+        if text is not None:            
+            results = User.objects.filter(
+                Q(first_name__contains = text) |
+                Q(last_name__contains = text) |
+                Q(username__contains = text)).order_by('-title')
+            return render_to_response('base.html', {'results': results,}, 
+                                       context_instance = RequestContext(request))

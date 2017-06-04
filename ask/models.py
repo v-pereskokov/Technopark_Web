@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User, UserManager
 from django.db.models import Count
 from django.utils import timezone
+from django.core.cache import cache
 import datetime
 
 
@@ -141,3 +142,47 @@ class Profile(models.Model):
 
 	def __unicode__(self):
 		return unicode(self.user)
+
+class ProjectCache:
+
+    #
+    # popular tags
+    #
+    POPULAR_TAGS = 'tags_popular'
+
+    # get
+    @classmethod
+    def get_popular_tags(self):
+        return cache.get(ProjectCache.POPULAR_TAGS, [])
+
+    # update
+    @classmethod
+    def update_popular_tags(self):
+        popular = Tag.objects.get_popular_tags()
+        cache.set(ProjectCache.POPULAR_TAGS, popular, 60*60*24)
+
+    #
+    # best users
+    #
+    BEST_USERS = 'users_best'
+
+    # get
+    @classmethod
+    def get_best_users(self):
+        return cache.get(ProjectCache.BEST_USERS, [])
+
+    # update
+    @classmethod
+    def update_best_users(self):
+        best_questions = Question.objects.hot()
+
+        users = {}
+        for i in best_questions:
+            users[i.author_id] = users.get(i.id, 0)
+
+        users = sorted(users, key=users.get)
+        users.reverse()
+
+        users = User.objects.filter(pk__in=users[:20])
+
+        cache.set(ProjectCache.BEST_USERS, users, 60*60*24)

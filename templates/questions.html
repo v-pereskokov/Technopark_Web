@@ -16,9 +16,17 @@
 		            </a>
 		          </div>
 		          <div class="questions-question-like">
-		            <a href="#action">
-		              <img src="{% static 'imgs/like.png' %}" class="img-circle questions-question-like-img">
-		            </a>
+		            {% if question.user != request.user %}
+				        <a dataid="{{ question.id }}">
+				          {% for like in request.user.profile.questionlikes.all %}
+				            {% if question.id == like.question.id and like.is_liked %}
+				              <img src="{% static 'imgs/yet_like.png'%}" class="img-circle question-page-like-img">
+				            {% else %}
+				              <img src="{% static 'imgs/like.png'%}" class="img-circle question-page-like-img">
+				            {% endif %}
+				          {% endfor %}
+				        </a>
+				    {% endif %}
 		            <p class="questions-question-like-count">{{ question_.rating }}</p>
 		          </div>
 		          <div class="questions-question-title">
